@@ -4,19 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:todolist_app/components/tasks.dart';
 import 'package:todolist_app/components/textList.dart';
 import 'package:todolist_app/screens/add_task_detail.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist_app/tasks_data.dart';
 
-class tasksScreen extends StatefulWidget {
-  @override
-  State<tasksScreen> createState() => _tasksScreenState();
-}
-
-class _tasksScreenState extends State<tasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy eggs'),
-    Task(name: 'Buy bread'),
-  ];
-
+class tasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +20,9 @@ class _tasksScreenState extends State<tasksScreen> {
                         padding: EdgeInsets.only(
                             bottom: MediaQuery.of(context).viewInsets.bottom),
                         child: addTask((newTaskTitle) {
-                          setState(() {
-                            tasks.add(Task(name: newTaskTitle));
-                          });
+                          // setState(() {
+                          //   tasks.add(Task(name: newTaskTitle));
+                          // });
                           Navigator.pop(context);
                         }),
                       )));
@@ -63,7 +54,7 @@ class _tasksScreenState extends State<tasksScreen> {
                             fontSize: 50.0,
                             fontWeight: FontWeight.w700)),
                     Text(
-                      '${tasks.length} tasks',
+                      '${Provider.of<TasksData>(context).tasks.length} tasks',
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
@@ -76,7 +67,7 @@ class _tasksScreenState extends State<tasksScreen> {
               Expanded(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 0.0),
-                  child: textList(tasks),
+                  child: textList(),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
