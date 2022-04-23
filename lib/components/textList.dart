@@ -16,9 +16,7 @@ class textList extends StatelessWidget {
           return textTile(
               taskData.tasks[index].name, taskData.tasks[index].isDone,
               (checkboxState) {
-            // setState(() {
-            //   widget.tasks[index].toggleDone();
-            // });
+            taskData.updateTask(taskData.tasks[index]);
           });
         },
         itemCount: taskData.taskCount,

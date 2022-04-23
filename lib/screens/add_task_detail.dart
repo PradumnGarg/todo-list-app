@@ -1,11 +1,10 @@
 // ignore_for_file: use_key_in_widget_constructors, camel_case_types, prefer_const_constructors, deprecated_member_use, prefer_const_declarations, unused_local_variable, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist_app/tasks_data.dart';
 
 class addTask extends StatelessWidget {
-  final Function addTaskCallback;
-  addTask(this.addTaskCallback);
-
   @override
   Widget build(BuildContext context) {
     String textadd = "";
@@ -48,7 +47,9 @@ class addTask extends StatelessWidget {
                       primary: Colors.lightBlueAccent,
                     ),
                     onPressed: () {
-                      addTaskCallback(textadd);
+                      Provider.of<TasksData>(context, listen: false)
+                          .addTask(textadd);
+                      Navigator.pop(context);
                     },
                     child: Text(
                       'Add',
