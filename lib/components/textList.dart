@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, camel_case_types, must_be_immutable, prefer_const_constructors_in_immutables
+// ignore_for_file: use_key_in_widget_constructors, camel_case_types, must_be_immutable, prefer_const_constructors_in_immutables, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +17,8 @@ class textList extends StatelessWidget {
               taskData.tasks[index].name, taskData.tasks[index].isDone,
               (checkboxState) {
             taskData.updateTask(taskData.tasks[index]);
+          }, () {
+            taskData.deleteTask(taskData.tasks[index]);
           });
         },
         itemCount: taskData.taskCount,
